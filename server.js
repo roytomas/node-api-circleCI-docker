@@ -14,6 +14,10 @@ const linkshareadService = require("./apps/service/linkshareadService");
 const hospitaladService = require("./apps/service/hospitaladService");
 const app = express();
 var path  = require("path");
+const dotenv = require('dotenv');
+dotenv.config();
+
+const port = process.env.PORT;
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -160,6 +164,8 @@ function verifyToken(req, res, next) {
     }
 }
 
-app.listen(4000, () => {
-    console.log('Server listening on port 4000')
+var server = app.listen(port, () => {
+    console.log("Server listening on port "+ port + "...")
 });
+
+module.exports = server;
